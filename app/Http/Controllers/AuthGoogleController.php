@@ -51,10 +51,10 @@ class AuthGoogleController extends Controller
      *
      * @return RedirectResponse
      */
-    public function googleAuthUrl(): RedirectResponse {
-        $client = $this->googleClient();
-        return Redirect::to($client->createAuthUrl());
-    }
+//    public function googleAuthUrl(): RedirectResponse {
+//        $client = $this->googleClient();
+//        return Redirect::to($client->createAuthUrl());
+//    }
 
     // public function googleAuthRedirect() : Redirect {
     //     $redirect = Socialite::driver('google')->stateless
