@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/auth', function (\Illuminate\Http\Request $request) {
-    $socialId = decrypt($request->t);
-
-    return $socialId;
-});
+//Route::get('/auth', function (\Illuminate\Http\Request $request) {
+//    $socialId = decrypt($request->t);
+//
+//    return $socialId;
+//});
