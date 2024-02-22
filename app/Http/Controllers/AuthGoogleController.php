@@ -23,27 +23,27 @@ class AuthGoogleController extends Controller
      *
      * @return Google_Client
      */
-    private function googleClient(): Google_Client {
-        // load google config
-        $googleConfig = base_path() . "/config.json";
-
-        // create client
-        $client = new Google_Client();
-        $client->setApplicationName(env("APP_NAME", "Sociallite Laravel Project"));
-        $client->setAuthConfig($googleConfig);
-        $client->setAccessType("offline");
-        $client->setApprovalPrompt('force');
-        // determine what google endpoint we can access
-        $client->setScopes([
-            ServiceOauth2::USERINFO_PROFILE,
-            ServiceOauth2::USERINFO_EMAIL,
-            ServiceOauth2::OPENID,
-            // Drive::DRIVE_METADATA_READONLY, // allows reading of google drive metadata
-        ]);
-        $client->setIncludeGrantedScopes(true);
-
-        return $client;
-    }
+//    private function googleClient(): Google_Client {
+//        // load google config
+//        $googleConfig = base_path() . "/config.json";
+//
+//        // create client
+//        $client = new Google_Client();
+//        $client->setApplicationName(env("APP_NAME", "Sociallite Laravel Project"));
+//        $client->setAuthConfig($googleConfig);
+//        $client->setAccessType("offline");
+//        $client->setApprovalPrompt('force');
+//        // determine what google endpoint we can access
+//        $client->setScopes([
+//            ServiceOauth2::USERINFO_PROFILE,
+//            ServiceOauth2::USERINFO_EMAIL,
+//            ServiceOauth2::OPENID,
+//            // Drive::DRIVE_METADATA_READONLY, // allows reading of google drive metadata
+//        ]);
+//        $client->setIncludeGrantedScopes(true);
+//
+//        return $client;
+//    }
 
     /**
      * The function `googleAuthUrl` returns a JSON response containing the Google authentication URL
