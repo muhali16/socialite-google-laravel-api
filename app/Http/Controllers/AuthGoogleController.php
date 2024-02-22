@@ -88,31 +88,31 @@ class AuthGoogleController extends Controller
         return \redirect(env('FRONTEND_URI') . '/t=' . $socialIdCrypt);
     }
 
-    public function postGoogleAuth(Request $request) : JsonResponse {
-        $authCode = urlencode($request->input('auth_code'));
-        $client = $this->googleClient();
-        $fetchToken = $client->fetchAccessTokenWithAuthCode($authCode);
-        dd($fetchToken);
-        $client->setAccessToken(json_encode($fetchToken));
-
-        $service = new ServiceOauth2($client);
-        $userInfoFromGoogle = $service->userinfo->get();
-        $user = User::where("social_type", 'google')
-                    ->where("social_id", $userInfoFromGoogle->id)
-                    ->first();
-        if(!$user) {
-            $user = User::create([
-                'name' => $userInfoFromGoogle->name,
-                'email' => $userInfoFromGoogle->email,
-                'social_id' => $userInfoFromGoogle->id,
-                'social_type' => "google",
-                'google_access_token_json' => json_encode($fetchToken),
-            ]);
-        } else {
-            $user->update(["google_access_token_json" => json_encode($fetchToken)]);
-        }
-
-        $token = $user->createToken("google_token")->accessToken;
-        return response()->json(["token" => $token], 201);
-    }
+//    public function postGoogleAuth(Request $request) : JsonResponse {
+//        $authCode = urlencode($request->input('auth_code'));
+//        $client = $this->googleClient();
+//        $fetchToken = $client->fetchAccessTokenWithAuthCode($authCode);
+//        dd($fetchToken);
+//        $client->setAccessToken(json_encode($fetchToken));
+//
+//        $service = new ServiceOauth2($client);
+//        $userInfoFromGoogle = $service->userinfo->get();
+//        $user = User::where("social_type", 'google')
+//                    ->where("social_id", $userInfoFromGoogle->id)
+//                    ->first();
+//        if(!$user) {
+//            $user = User::create([
+//                'name' => $userInfoFromGoogle->name,
+//                'email' => $userInfoFromGoogle->email,
+//                'social_id' => $userInfoFromGoogle->id,
+//                'social_type' => "google",
+//                'google_access_token_json' => json_encode($fetchToken),
+//            ]);
+//        } else {
+//            $user->update(["google_access_token_json" => json_encode($fetchToken)]);
+//        }
+//
+//        $token = $user->createToken("google_token")->accessToken;
+//        return response()->json(["token" => $token], 201);
+//    }
 }
