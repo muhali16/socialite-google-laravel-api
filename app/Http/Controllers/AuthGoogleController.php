@@ -65,8 +65,8 @@ class AuthGoogleController extends Controller
         return Socialite::driver('google')->stateless()->redirect();
     }
 
-    public function googleAuthCallback() : RedirectResponse {
-        $googleCallbackUser = Socialite::driver('google')->user();
+    public function googleAuthCallback(Request $request) : RedirectResponse {
+        $googleCallbackUser = Socialite::driver('google')->stateless()->user();
 
         $user = User::where("social_id", $googleCallbackUser->getId())->first();
         $socialIdCrypt = bcrypt($googleCallbackUser->getId());
