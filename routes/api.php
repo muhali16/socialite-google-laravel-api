@@ -19,9 +19,9 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::get("/auth/google/request", [AuthGoogleController::class, "googleAuth"]);
+Route::get("/v1/hsks/auth/google/request", [AuthGoogleController::class, "googleAuth"]);
 // Route::get("/auth/google", [AuthGoogleController::class, "redirectToGoogle"]);
-Route::get("/auth/google/callback", [AuthGoogleController::class, "googleAuthCallback"]);
+Route::get("/v1/hsks/auth/google/callback", [AuthGoogleController::class, "googleAuthCallback"]);
 
 Route::middleware(['auth:sanctum'])->group(function (){
     Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
