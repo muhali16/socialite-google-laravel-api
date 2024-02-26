@@ -23,6 +23,7 @@ class User extends Authenticatable
         'password',
         'social_id',
         'social_type',
+        'email_verified_at',
         'google_access_token_json'
     ];
 

@@ -22,3 +22,10 @@ use Illuminate\Support\Facades\Route;
 Route::get("/auth/google/request", [AuthGoogleController::class, "googleAuth"]);
 // Route::get("/auth/google", [AuthGoogleController::class, "redirectToGoogle"]);
 Route::get("/auth/google/callback", [AuthGoogleController::class, "googleAuthCallback"]);
+
+Route::middleware(['auth:sanctum'])->group(function (){
+    Route::get('/users', [\App\Http\Controllers\UserController::class, 'index']);
+
+    Route::delete("/auth/google/logout", [AuthGoogleController::class, 'logout']);
+});
+
